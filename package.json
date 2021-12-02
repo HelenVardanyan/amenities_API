@@ -1,0 +1,25 @@
+{
+  "name": "amenitiesapi",
+  "version": "1.0.0",
+  "description": "",
+  "main": "index.js",
+  "scripts": {
+    "cy:open": "cypress open",
+    "cy:run": "cypress run",
+    "cy:open:sndbx": "cypress open --env envFile=.env.sndbx",
+    "cy:run:sndbx": "cypress run --env envFile=.env.sndbx",
+    "cy:open:stg": "cypress open --env envFile=.env.stg",
+    "cy:run:stg": "cypress run --env envFile=.env.stg",
+    "cy:dashboard": "npx cypress run --record --key 0070dbfb-7115-4f2d-a56d-0a0d64968a83"
+  },
+  "author": "lena",
+  "license": "ISC",
+  "devDependencies": {
+    "cypress": "^9.1.0",
+    "dotenv": "^8.2.0",
+    "eslint": "^7.24.0",
+    "eslint-config-airbnb-base": "^14.2.1",
+    "eslint-plugin-cypress": "^2.11.2",
+    "eslint-plugin-import": "^2.22.1"
+  }
+}
