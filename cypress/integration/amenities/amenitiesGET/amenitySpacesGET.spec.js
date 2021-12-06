@@ -1,5 +1,5 @@
 import { RESPONSE_STATUS_CODES } from '../../../constants/statusCodes';
-import { UNIT_API_ROUTES } from '../../../constants/routes';
+import { UNIT_API_ROUTES, AMENITIES_SPACES } from '../../../constants/routes';
 
 
 describe('Unit ID Amenities API Routes for Tenant', () => {
@@ -22,7 +22,7 @@ describe('Unit ID Amenities API Routes for Tenant', () => {
     const unit_id = Cypress.env('UNIT_ID_2');
     cy.request({
       headers,
-      url: `${UNIT_API_ROUTES.UNITS}/${unit_id}/amenity_spaces`,
+      url: `${UNIT_API_ROUTES.UNITS}/${unit_id}/${AMENITIES_SPACES.AMENITY_SPACES}`,
       method: 'GET',
     }).then((res) => {
       const { status, body } = res;
@@ -38,5 +38,27 @@ describe('Unit ID Amenities API Routes for Tenant', () => {
     });
   });
 });
+
+describe('Unit ID Amenities API Routes for an unauthorized Tenant', () => {
+  const headers = {
+    'Content-type': 'application/vnd.api+json',
+    Accept: 'application/vnd.api+json',
+  };
+
+
+  it('Should not access unit ID Amenities', () => {
+    const unit_id = Cypress.env('UNIT_ID_2');
+    cy.request({
+      headers,
+      url: `${UNIT_API_ROUTES.UNITS}/${unit_id}/${AMENITIES_SPACES.AMENITY_SPACES}`,
+      method: 'GET',
+      failOnStatusCode: false,
+    }).then((res) => {
+      const { status } = res;
+      expect(status).to.equal(RESPONSE_STATUS_CODES.UNAUTHORIZED);
+      });
+      
+    });
+  });
 
 
